@@ -10,6 +10,7 @@ Official landing page for **TableCSV** (Obsidian Community plugin v1.0.5).
 | Service | URL |
 |---------|-----|
 | **GitHub** | https://github.com/crossbeat461-a11y/tablecsv-lp |
+| **GitHub Pages** | https://crossbeat461-a11y.github.io/tablecsv-lp/ |
 | **Vercel** | Import repo in [Vercel Dashboard](https://vercel.com/new) → `crossbeat461-a11y/tablecsv-lp` (suggested: `tablecsv-lp.vercel.app`) |
 
 ## Local preview
