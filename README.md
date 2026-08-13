@@ -5,6 +5,13 @@ Official landing page for **TableCSV** (Obsidian Community plugin v1.0.5).
 - Open `.csv` files as readable tables inside your vault
 - Sticky header row and text filter — fully offline
 
+## Live URLs
+
+| Service | URL |
+|---------|-----|
+| **GitHub** | https://github.com/crossbeat461-a11y/tablecsv-lp |
+| **Vercel** | Import repo in [Vercel Dashboard](https://vercel.com/new) → `crossbeat461-a11y/tablecsv-lp` (suggested: `tablecsv-lp.vercel.app`) |
+
 ## Local preview
 
 ```bash
@@ -14,17 +21,21 @@ python3 -m http.server 8080
 
 ## Deploy
 
-### GitHub
+### Vercel (recommended)
 
-1. Create repo `TableCSV-LP` (or `tablecsv-lp`) under `crossbeat461-a11y`
-2. Push this folder
-3. Settings → Pages → Branch: `main` / `/ (root)`
+1. [Vercel](https://vercel.com/new) → Import Git → `crossbeat461-a11y/tablecsv-lp`
+2. Framework Preset: **Other** (static)
+3. Deploy
 
-### Vercel
+CLI (logged in):
 
-1. Import the GitHub repo
-2. Framework: Other (static)
-3. Root: `/`
+```bash
+npx vercel --prod
+```
+
+### GitHub Pages
+
+Settings → Pages → Branch: `main` / `/ (root)`
 
 ## Links
 
