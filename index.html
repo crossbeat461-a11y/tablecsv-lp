@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-774DT6CW0W"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-774DT6CW0W');
+    </script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TableCSV v1.0.5 | Obsidian で CSV を見やすい表として開く</title>
+    <meta name="description" content="TableCSV — Obsidian Community plugin. Open .csv files as readable tables in your vault. Sticky header, text filter, fully offline. Free & MIT.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="TableCSV | Obsidian CSV Table Viewer">
+    <meta property="og:description" content="Open CSV files as clean tables inside your vault. Sticky header, filter, offline.">
+    <meta property="og:image" content="images/screenshot.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%237c3aed'/><text x='50' y='62' font-size='44' text-anchor='middle' fill='white' font-family='sans-serif'>CSV</text></svg>">
+
+    <style>
+        :root {
+            --obs-purple: #7c3aed;
+            --obs-purple-light: #a78bfa;
+            --obs-purple-dark: #5b21b6;
+            --obs-bg: #1e1e1e;
+            --obs-bg-secondary: #262626;
+            --obs-bg-tertiary: #2d2d2d;
+            --obs-border: #3d3d3d;
+            --obs-text: #dcddde;
+            --obs-text-muted: #999;
+            --obs-accent: #8b5cf6;
+            --page-bg: #131018;
+            --page-bg-soft: #1a1525;
+            --card: #ffffff;
+            --text: #1a1a2e;
+            --text-muted: #64748b;
+            --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", "Hiragino Sans", "BIZ UDPGothic", sans-serif;
+            background: var(--page-bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Language */
+        .lang-switch {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100;
+            display: flex;
+            gap: 4px;
+            background: rgba(30, 30, 30, 0.92);
+            padding: 4px;
+            border-radius: 999px;
+            border: 1px solid var(--obs-border);
+            backdrop-filter: blur(8px);
+        }
+
+        .lang-btn {
+            border: none;
+            background: none;
+            color: var(--obs-text-muted);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            cursor: pointer;
+        }
+
+        .lang-btn.active {
+            background: var(--obs-purple);
+            color: #fff;
+        }
+
+        .lang-en { display: none; }
+        html[lang="en"] .lang-ja { display: none; }
+        html[lang="en"] .lang-en { display: block; }
+        html[lang="en"] span.lang-en { display: inline; }
+        html[lang="ja"] span.lang-en { display: none; }
+        html[lang="en"] span.lang-ja { display: none; }
+        span.lang-ja, span.lang-en { display: inline; }
+
+        /* Hero */
+        .hero {
+            padding: 88px 0 64px;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% -10%, rgba(124, 58, 237, 0.45), transparent),
+                linear-gradient(180deg, var(--page-bg-soft) 0%, var(--page-bg) 100%);
+            color: #fff;
+            text-align: center;
+        }
+
+        .plugin-badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+        }
+
+        .badge-obsidian {
+            background: rgba(124, 58, 237, 0.25);
+            border: 1px solid rgba(167, 139, 250, 0.45);
+            color: #e9d5ff;
+        }
+
+        .badge-version {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #d1d5db;
+        }
+
+        .badge-offline {
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(52, 211, 153, 0.35);
+            color: #a7f3d0;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            margin: 0 0 16px;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+        }
+
+        .hero h1 .purple { color: var(--obs-purple-light); }
+
+        .hero .lead {
+            max-width: 620px;
+            margin: 0 auto 32px;
+            font-size: 1.1rem;
+            color: #c4b5fd;
+            opacity: 0.95;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--obs-purple) 0%, var(--obs-purple-dark) 100%);
+            color: #fff;
+            box-shadow: 0 8px 28px rgba(124, 58, 237, 0.45);
+        }
+
+        .btn-primary:hover { transform: translateY(-2px); }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--obs-purple-light);
+            color: var(--obs-purple-light);
+        }
+
+        /* Obsidian window mock */
+        .obsidian-window {
+            margin: 48px auto 0;
+            max-width: 920px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--obs-border);
+            text-align: left;
+        }
+
+        .obs-titlebar {
+            background: #2b2b2b;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid var(--obs-border);
+        }
+
+        .obs-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .obs-dot.red { background: #ff5f57; }
+        .obs-dot.yellow { background: #febc2e; }
+        .obs-dot.green { background: #28c840; }
+
+        .obs-titlebar span {
+            flex: 1;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--obs-text-muted);
+        }
+
+        .obs-body {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            min-height: 280px;
+            background: var(--obs-bg);
+        }
+
+        .obs-sidebar {
+            background: var(--obs-bg-secondary);
+            border-right: 1px solid var(--obs-border);
+            padding: 12px 0;
+            font-size: 0.78rem;
+            color: var(--obs-text-muted);
+        }
+
+        .obs-sidebar-title {
+            padding: 4px 14px 8px;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #666;
+        }
+
+        .obs-file {
+            padding: 5px 14px;
+            color: var(--obs-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .obs-file.active {
+            background: rgba(124, 58, 237, 0.2);
+            color: #e9d5ff;
+            border-left: 2px solid var(--obs-purple);
+        }
+
+        .obs-main {
+            padding: 16px 20px;
+            overflow: hidden;
+        }
+
+        .obs-filter {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .obs-filter input {
+            flex: 1;
+            background: var(--obs-bg-tertiary);
+            border: 1px solid var(--obs-border);
+            border-radius: 6px;
+            padding: 7px 10px;
+            color: var(--obs-text);
+            font-size: 0.8rem;
+        }
+
+        .obs-meta {
+            font-size: 0.72rem;
+            color: var(--obs-text-muted);
+            margin-bottom: 10px;
+        }
+
+        .obs-table-wrap {
+            overflow: auto;
+            max-height: 180px;
+            border: 1px solid var(--obs-border);
+            border-radius: 6px;
+        }
+
+        table.obs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.75rem;
+            color: var(--obs-text);
+        }
+
+        .obs-table th {
+            position: sticky;
+            top: 0;
+            background: var(--obs-bg-secondary);
+            padding: 6px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--obs-border);
+            white-space: nowrap;
+        }
+
+        .obs-table td {
+            padding: 5px 10px;
+            border-bottom: 1px solid var(--obs-border);
+            white-space: nowrap;
+        }
+
+        .obs-table tr:nth-child(even) td {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Screenshot */
+        .screenshot-section {
+            padding: 72px 0;
+            background: linear-gradient(180deg, var(--page-bg) 0%, #0f0d14 100%);
+        }
+
+        .screenshot-frame {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(124, 58, 237, 0.25);
+        }
+
+        .screenshot-frame img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .screenshot-caption {
+            text-align: center;
+            margin-top: 16px;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Light sections */
+        .section-light {
+            padding: 72px 0;
+            background: #faf8ff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--obs-purple-dark);
+            margin: 0 0 12px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 560px;
+            margin: 0 auto 40px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid #ede9fe;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.08);
+        }
+
+        .feature-card .icon { font-size: 1.75rem; margin-bottom: 10px; }
+
+        .feature-card h3 {
+            margin: 0 0 8px;
+            font-size: 1.05rem;
+            color: var(--obs-purple-dark);
+        }
+
+        .feature-card p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Steps */
+        .steps {
+            display: grid;
+            gap: 16px;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            background: var(--card);
+            padding: 20px 22px;
+            border-radius: 14px;
+            border: 1px solid #ede9fe;
+        }
+
+        .step-num {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--obs-purple), var(--obs-purple-dark));
+            color: #fff;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+        }
+
+        .step h3 {
+            margin: 0 0 4px;
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .step p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .step code {
+            background: #f3e8ff;
+            color: var(--obs-purple-dark);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            text-align: center;
+            background: var(--page-bg);
+            color: #94a3b8;
+            font-size: 0.88rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        footer a {
+            color: var(--obs-purple-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover { text-decoration: underline; }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px 24px;
+            margin-bottom: 16px;
+        }
+
+        @media (max-width: 640px) {
+            .obs-body { grid-template-columns: 1fr; }
+            .obs-sidebar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" class="lang-btn active" data-lang="ja">日本語</button>
+        <button type="button" class="lang-btn" data-lang="en">English</button>
+    </div>
+
+    <header class="hero">
+        <div class="container">
+            <div class="plugin-badge-row">
+                <span class="badge badge-obsidian">🔌 Obsidian Community plugin</span>
+                <span class="badge badge-version">v1.0.5</span>
+                <span class="badge badge-offline">
+                    <span class="lang-ja">完全オフライン</span>
+                    <span class="lang-en">Fully offline</span>
+                </span>
+            </div>
+
+            <h1>
+                <span class="lang-ja">Vault 内の <span class="purple">.csv</span> を、<br>見やすい表で開く</span>
+                <span class="lang-en">Open <span class="purple">.csv</span> files<br>as readable tables in your vault</span>
+            </h1>
+
+            <p class="lead lang-ja">TableCSV は Obsidian 用プラグイン。ファイルエクスプローラーから CSV を開くだけで、固定ヘッダー付きの表ビューとテキストフィルターが使えます。ネットワーク不要・無料（MIT）。</p>
+            <p class="lead lang-en">TableCSV is an Obsidian plugin. Open any CSV from the file explorer—sticky header, text filter, no network requests. Free & MIT.</p>
+
+            <div class="hero-cta">
+                <a href="https://obsidian.md/plugins?id=table-csv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <span class="lang-ja">Community plugins でインストール</span>
+                    <span class="lang-en">Install from Community plugins</span>
+                </a>
+                <a href="https://github.com/crossbeat461-a11y/table-csv" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
+            </div>
+
+            <div class="obsidian-window" aria-hidden="true">
+                <div class="obs-titlebar">
+                    <span class="obs-dot red"></span>
+                    <span class="obs-dot yellow"></span>
+                    <span class="obs-dot green"></span>
+                    <span>My Vault — TableCSV</span>
+                </div>
+                <div class="obs-body">
+                    <aside class="obs-sidebar">
+                        <div class="obs-sidebar-title">Files</div>
+                        <div class="obs-file">📁 data</div>
+                        <div class="obs-file active">📄 sales-2026.csv</div>
+                        <div class="obs-file">📝 daily-note.md</div>
+                        <div class="obs-file">📄 inventory.csv</div>
+                    </aside>
+                    <div class="obs-main">
+                        <div class="obs-filter">
+                            <input type="text" value="Tokyo" readonly aria-label="Filter">
+                        </div>
+                        <div class="obs-meta">sales-2026.csv · 128 rows · filtered</div>
+                        <div class="obs-table-wrap">
+                            <table class="obs-table">
+                                <thead>
+                                    <tr>
+                                        <th>SKU</th>
+                                        <th>Region</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>A-1042</td><td>Tokyo</td><td>24</td><td>¥1,980</td></tr>
+                                    <tr><td>B-3310</td><td>Tokyo</td><td>8</td><td>¥4,500</td></tr>
+                                    <tr><td>C-9021</td><td>Tokyo</td><td>51</td><td>¥890</td></tr>
+                                    <tr><td>D-7712</td><td>Osaka</td><td>12</td><td>¥2,200</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="screenshot-section">
+        <div class="container">
+            <div class="screenshot-frame">
+                <img src="images/screenshot.png" alt="TableCSV plugin screenshot in Obsidian" width="1200" height="675" loading="lazy" decoding="async">
+            </div>
+            <p class="screenshot-caption">
+                <span class="lang-ja">実際の Obsidian 上での表示イメージ</span>
+                <span class="lang-en">Actual view inside Obsidian</span>
+            </p>
+        </div>
+    </section>
+
+    <section class="section-light">
+        <div class="container">
+            <h2 class="section-title lang-ja">機能</h2>
+            <h2 class="section-title lang-en">Features</h2>
+            <p class="section-sub lang-ja">Vault 内の CSV を、スプレッドシートアプリを開かずにサッと確認。</p>
+            <p class="section-sub lang-en">Review CSV data in your vault without launching a spreadsheet app.</p>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <span class="icon">📊</span>
+                    <h3 class="lang-ja">表形式ビュー</h3>
+                    <h3 class="lang-en">Clean table view</h3>
+                    <p class="lang-ja"><code>.csv</code> を読みやすい表として表示。行の区切りが一目で分かります。</p>
+                    <p class="lang-en">Render <code>.csv</code> files as readable tables with clear row separation.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="icon">📌</span>
+                    <h3 class="lang-ja">固定ヘッダー</h3>
+                    <h3 class="lang-en">Sticky header</h3>
+                    <p class="lang-ja">スクロールしても列名が見えるので、長い CSV でも迷いません。</p>
+                    <p class="lang-en">Column headers stay visible while scrolling through long files.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="icon">🔍</span>
+                    <h3 class="lang-ja">テキストフィルター</h3>
+                    <h3 class="lang-en">Text filter</h3>
+                    <p class="lang-ja">上部の入力欄でセル内テキストを絞り込み。素早く行を探せます。</p>
+                    <p class="lang-en">Narrow rows by typing in the filter box—find matches instantly.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="icon">🔒</span>
+                    <h3 class="lang-ja">完全オフライン</h3>
+                    <h3 class="lang-en">Fully offline</h3>
+                    <p class="lang-ja">ネットワーク通信なし。Vault 内のデータは PC 上で完結します。</p>
+                    <p class="lang-en">No network requests. Your data stays on your device.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-light" style="background: #fff; padding-top: 0;">
+        <div class="container">
+            <h2 class="section-title lang-ja">インストール方法</h2>
+            <h2 class="section-title lang-en">How to install</h2>
+
+            <div class="steps">
+                <div class="step">
+                    <span class="step-num">1</span>
+                    <div>
+                        <h3 class="lang-ja">Community plugins を有効化</h3>
+                        <h3 class="lang-en">Enable Community plugins</h3>
+                        <p class="lang-ja">Obsidian → 設定 → Community plugins →「Turn on community plugins」</p>
+                        <p class="lang-en">Obsidian → Settings → Community plugins → Turn on community plugins</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-num">2</span>
+                    <div>
+                        <h3 class="lang-ja">TableCSV を検索してインストール</h3>
+                        <h3 class="lang-en">Browse and install TableCSV</h3>
+                        <p class="lang-ja">Browse →「TableCSV」で検索 → Install → Enable</p>
+                        <p class="lang-en">Browse → search <code>TableCSV</code> → Install → Enable</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    <div>
+                        <h3 class="lang-ja">CSV を開く</h3>
+                        <h3 class="lang-en">Open a CSV file</h3>
+                        <p class="lang-ja">ファイルエクスプローラーから <code>.csv</code> をクリック。表ビューが開きます。</p>
+                        <p class="lang-en">Click any <code>.csv</code> in the file explorer to open the table view.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 36px;">
+                <a href="https://obsidian.md/plugins?id=table-csv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                    <span class="lang-ja">Community plugins ページを開く</span>
+                    <span class="lang-en">Open Community plugins page</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://obsidian.md/plugins?id=table-csv" target="_blank" rel="noopener noreferrer">Community plugins</a>
+                <a href="https://github.com/crossbeat461-a11y/table-csv" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://github.com/crossbeat461-a11y/table-csv/issues" target="_blank" rel="noopener noreferrer">Issues</a>
+                <a href="https://k-tech-lab.vercel.app/" target="_blank" rel="noopener noreferrer">K-Tech Studio</a>
+            </div>
+            <p>TableCSV v1.0.5 · MIT · <a href="https://github.com/crossbeat461-a11y">K-Tech Studio</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.lang-btn').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const lang = btn.dataset.lang;
+                document.documentElement.lang = lang;
+                document.querySelectorAll('.lang-btn').forEach((b) => {
+                    b.classList.toggle('active', b === btn);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
