@@ -13,6 +13,11 @@ Official landing page for **TableCSV** (Obsidian Community plugin v1.0.5).
 | **GitHub Pages** | https://crossbeat461-a11y.github.io/tablecsv-lp/ |
 | **Vercel** | https://tablecsv-lp.vercel.app/ |
 
+## SEO
+
+- `robots.txt` — `/robots.txt`
+- `sitemap.xml` — submit `sitemap.xml` in [Google Search Console](https://search.google.com/search-console)
+
 ## Local preview
 
 ```bash
