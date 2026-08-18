@@ -1,9 +1,10 @@
 # TableCSV — Landing Page
 
-Official landing page for **TableCSV** (Obsidian Community plugin v1.0.5).
+Official landing page for **TableCSV** (Obsidian Community plugin v1.2.0).
 
-- Open `.csv` files as readable tables inside your vault
-- Sticky header row and text filter — fully offline
+- Open `.csv` files as tables inside your vault
+- View, filter, edit — copy and paste via the OS clipboard (Excel, Notepad, TextEdit)
+- Fully offline
 
 ## Live URLs
 

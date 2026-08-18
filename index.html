@@ -11,11 +11,11 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TableCSV v1.0.5 | Obsidian で CSV を見やすい表として開く</title>
-    <meta name="description" content="TableCSV — Obsidian Community plugin. Open .csv files as readable tables in your vault. Sticky header, text filter, fully offline. Free & MIT.">
+    <title>TableCSV v1.2.0 | Obsidian で CSV を表として開く・コピー・貼り付け</title>
+    <meta name="description" content="TableCSV — Obsidian Community plugin v1.2.0. Open .csv as tables. Filter, edit, copy and paste via the OS clipboard (Excel, Notepad, TextEdit). Fully offline. Free & MIT.">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="TableCSV | Obsidian CSV Table Viewer">
-    <meta property="og:description" content="Open CSV files as clean tables inside your vault. Sticky header, filter, offline.">
+    <meta property="og:title" content="TableCSV v1.2.0 | Obsidian CSV Table">
+    <meta property="og:description" content="Open CSV files as tables. Copy and paste with Excel, Notepad, or TextEdit. Sticky header, filter, offline.">
     <meta property="og:url" content="https://tablecsv-lp.vercel.app/">
     <meta property="og:image" content="https://tablecsv-lp.vercel.app/images/screenshot.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -283,6 +283,23 @@
             gap: 8px;
             align-items: center;
             margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+
+        .obs-tb-btn {
+            background: var(--obs-bg-tertiary);
+            border: 1px solid var(--obs-border);
+            border-radius: 6px;
+            padding: 6px 10px;
+            color: var(--obs-text);
+            font-size: 0.72rem;
+            white-space: nowrap;
+        }
+
+        .obs-tb-btn.is-cta {
+            background: rgba(124, 58, 237, 0.35);
+            border-color: var(--obs-purple);
+            color: #e9d5ff;
         }
 
         .obs-filter input {
@@ -506,7 +523,7 @@
         <div class="container">
             <div class="plugin-badge-row">
                 <span class="badge badge-obsidian">🔌 Obsidian Community plugin</span>
-                <span class="badge badge-version">v1.0.5</span>
+                <span class="badge badge-version">v1.2.0</span>
                 <span class="badge badge-offline">
                     <span class="lang-ja">完全オフライン</span>
                     <span class="lang-en">Fully offline</span>
@@ -518,8 +535,8 @@
                 <span class="lang-en">Open <span class="purple">.csv</span> files<br>as readable tables in your vault</span>
             </h1>
 
-            <p class="lead lang-ja">TableCSV は Obsidian 用プラグイン。ファイルエクスプローラーから CSV を開くだけで、固定ヘッダー付きの表ビューとテキストフィルターが使えます。ネットワーク不要・無料（MIT）。</p>
-            <p class="lead lang-en">TableCSV is an Obsidian plugin. Open any CSV from the file explorer—sticky header, text filter, no network requests. Free & MIT.</p>
+            <p class="lead lang-ja">TableCSV は Obsidian 用プラグイン。CSV を表で開き、閲覧・編集できます。OS のクリップボードで Excel・メモ帳・TextEdit とコピー／貼り付け。ネットワーク不要・無料（MIT）。</p>
+            <p class="lead lang-en">TableCSV is an Obsidian plugin. Open CSV as a table, view or edit, and copy/paste via the OS clipboard (Excel, Notepad, TextEdit). No network requests. Free &amp; MIT.</p>
 
             <div class="hero-cta">
                 <a href="https://obsidian.md/plugins?id=table-csv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
@@ -546,6 +563,9 @@
                     </aside>
                     <div class="obs-main">
                         <div class="obs-filter">
+                            <span class="obs-tb-btn is-cta">View</span>
+                            <span class="obs-tb-btn">Edit</span>
+                            <span class="obs-tb-btn">Copy</span>
                             <input type="text" value="Tokyo" readonly aria-label="Filter">
                         </div>
                         <div class="obs-meta">sales-2026.csv · 128 rows · filtered</div>
@@ -589,8 +609,8 @@
         <div class="container">
             <h2 class="section-title lang-ja">機能</h2>
             <h2 class="section-title lang-en">Features</h2>
-            <p class="section-sub lang-ja">Vault 内の CSV を、スプレッドシートアプリを開かずにサッと確認。</p>
-            <p class="section-sub lang-en">Review CSV data in your vault without launching a spreadsheet app.</p>
+            <p class="section-sub lang-ja">Vault 内の CSV を表で確認・編集。Excel との行き来はクリップボードだけ。</p>
+            <p class="section-sub lang-en">Review and edit CSV in your vault. Move data to Excel with the system clipboard.</p>
 
             <div class="feature-grid">
                 <article class="feature-card">
@@ -611,8 +631,29 @@
                     <span class="icon">🔍</span>
                     <h3 class="lang-ja">テキストフィルター</h3>
                     <h3 class="lang-en">Text filter</h3>
-                    <p class="lang-ja">上部の入力欄でセル内テキストを絞り込み。素早く行を探せます。</p>
-                    <p class="lang-en">Narrow rows by typing in the filter box—find matches instantly.</p>
+                    <p class="lang-ja">閲覧モードでセル内テキストを絞り込み。ファイルは変更しません。</p>
+                    <p class="lang-en">Narrow rows in View mode without changing the file.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="icon">✏️</span>
+                    <h3 class="lang-ja">編集モード</h3>
+                    <h3 class="lang-en">Edit mode</h3>
+                    <p class="lang-ja">セル・行・列を直して、同じ CSV に保存します。</p>
+                    <p class="lang-en">Change cells, rows, and columns, then save to the same CSV.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="icon">📋</span>
+                    <h3 class="lang-ja">コピー</h3>
+                    <h3 class="lang-en">Copy</h3>
+                    <p class="lang-ja">OS のクリップボードへ。Excel・メモ帳・TextEdit に貼り付けできます。</p>
+                    <p class="lang-en">Copy to the OS clipboard. Paste into Excel, Notepad, or TextEdit.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="icon">📥</span>
+                    <h3 class="lang-ja">貼り付け</h3>
+                    <h3 class="lang-en">Paste</h3>
+                    <p class="lang-ja">編集モードで Excel などの表を貼ると、CSV として保存します。</p>
+                    <p class="lang-en">In Edit mode, paste a table from Excel and save it as CSV.</p>
                 </article>
                 <article class="feature-card">
                     <span class="icon">🔒</span>
@@ -658,6 +699,15 @@
                         <p class="lang-en">Click any <code>.csv</code> in the file explorer to open the table view.</p>
                     </div>
                 </div>
+                <div class="step">
+                    <span class="step-num">4</span>
+                    <div>
+                        <h3 class="lang-ja">コピー／貼り付け</h3>
+                        <h3 class="lang-en">Copy and paste</h3>
+                        <p class="lang-ja"><strong>Copy</strong> で OS のクリップボードへ。<strong>Edit</strong> にして <strong>Paste</strong> すると、Excel などの表を CSV にできます。</p>
+                        <p class="lang-en"><strong>Copy</strong> uses the OS clipboard. Switch to <strong>Edit</strong> and <strong>Paste</strong> to bring a table from Excel into CSV.</p>
+                    </div>
+                </div>
             </div>
 
             <div style="text-align: center; margin-top: 36px;">
@@ -677,7 +727,7 @@
                 <a href="https://github.com/crossbeat461-a11y/table-csv/issues" target="_blank" rel="noopener noreferrer">Issues</a>
                 <a href="https://k-tech-lab.vercel.app/" target="_blank" rel="noopener noreferrer">K-Tech Studio</a>
             </div>
-            <p>TableCSV v1.0.5 · MIT · <a href="https://github.com/crossbeat461-a11y">K-Tech Studio</a></p>
+            <p>TableCSV v1.2.0 · MIT · <a href="https://github.com/crossbeat461-a11y">K-Tech Studio</a></p>
         </div>
     </footer>
 
