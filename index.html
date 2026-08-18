@@ -11,11 +11,11 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TableCSV v1.2.0 | Obsidian で CSV を表として開く・コピー・貼り付け</title>
-    <meta name="description" content="TableCSV — Obsidian Community plugin v1.2.0. Open .csv as tables. Filter, edit, copy and paste via the OS clipboard (Excel, Notepad, TextEdit). Fully offline. Free & MIT.">
+    <title>TableCSV v1.3.0 | Obsidian で CSV を表として開く・ソート・コピー・貼り付け</title>
+    <meta name="description" content="TableCSV — Obsidian Community plugin v1.3.0. Open .csv as tables. Filter, column sort, edit, copy and paste via the OS clipboard (Excel, Notepad, TextEdit). Fully offline. Free & MIT.">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="TableCSV v1.2.0 | Obsidian CSV Table">
-    <meta property="og:description" content="Open CSV files as tables. Copy and paste with Excel, Notepad, or TextEdit. Sticky header, filter, offline.">
+    <meta property="og:title" content="TableCSV v1.3.0 | Obsidian CSV Table">
+    <meta property="og:description" content="Open CSV files as tables. Filter, column sort, and copy/paste with Excel, Notepad, or TextEdit. Sticky header, offline.">
     <meta property="og:url" content="https://tablecsv-lp.vercel.app/">
     <meta property="og:image" content="https://tablecsv-lp.vercel.app/images/screenshot.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -523,7 +523,7 @@
         <div class="container">
             <div class="plugin-badge-row">
                 <span class="badge badge-obsidian">🔌 Obsidian Community plugin</span>
-                <span class="badge badge-version">v1.2.0</span>
+                <span class="badge badge-version">v1.3.0</span>
                 <span class="badge badge-offline">
                     <span class="lang-ja">完全オフライン</span>
                     <span class="lang-en">Fully offline</span>
@@ -535,8 +535,8 @@
                 <span class="lang-en">Open <span class="purple">.csv</span> files<br>as readable tables in your vault</span>
             </h1>
 
-            <p class="lead lang-ja">TableCSV は Obsidian 用プラグイン。CSV を表で開き、閲覧・編集できます。OS のクリップボードで Excel・メモ帳・TextEdit とコピー／貼り付け。ネットワーク不要・無料（MIT）。</p>
-            <p class="lead lang-en">TableCSV is an Obsidian plugin. Open CSV as a table, view or edit, and copy/paste via the OS clipboard (Excel, Notepad, TextEdit). No network requests. Free &amp; MIT.</p>
+            <p class="lead lang-ja">TableCSV は Obsidian 用プラグイン。CSV を表で開き、フィルター・列ソート・編集、OS クリップボードでのコピー／貼り付けができます。ネットワーク不要・無料（MIT）。</p>
+            <p class="lead lang-en">TableCSV is an Obsidian plugin. Open CSV as tables with filter, column sort, editing, and OS clipboard copy/paste (Excel, Notepad, TextEdit). No network requests. Free &amp; MIT.</p>
 
             <div class="hero-cta">
                 <a href="https://obsidian.md/plugins?id=table-csv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
@@ -575,15 +575,15 @@
                                     <tr>
                                         <th>SKU</th>
                                         <th>Region</th>
-                                        <th>Qty</th>
+                                        <th>Qty ▲</th>
                                         <th>Price</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>A-1042</td><td>Tokyo</td><td>24</td><td>¥1,980</td></tr>
                                     <tr><td>B-3310</td><td>Tokyo</td><td>8</td><td>¥4,500</td></tr>
-                                    <tr><td>C-9021</td><td>Tokyo</td><td>51</td><td>¥890</td></tr>
                                     <tr><td>D-7712</td><td>Osaka</td><td>12</td><td>¥2,200</td></tr>
+                                    <tr><td>A-1042</td><td>Tokyo</td><td>24</td><td>¥1,980</td></tr>
+                                    <tr><td>C-9021</td><td>Tokyo</td><td>51</td><td>¥890</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -633,6 +633,13 @@
                     <h3 class="lang-en">Text filter</h3>
                     <p class="lang-ja">閲覧モードでセル内テキストを絞り込み。ファイルは変更しません。</p>
                     <p class="lang-en">Narrow rows in View mode without changing the file.</p>
+                </article>
+                <article class="feature-card">
+                    <span class="icon">↕️</span>
+                    <h3 class="lang-ja">列ソート</h3>
+                    <h3 class="lang-en">Column sort</h3>
+                    <p class="lang-ja">列見出しをクリックして昇順・降順・解除。ファイルは書き換えません。</p>
+                    <p class="lang-en">Click a header to sort ascending, descending, or clear—without changing the file.</p>
                 </article>
                 <article class="feature-card">
                     <span class="icon">✏️</span>
@@ -727,7 +734,7 @@
                 <a href="https://github.com/crossbeat461-a11y/table-csv/issues" target="_blank" rel="noopener noreferrer">Issues</a>
                 <a href="https://k-tech-lab.vercel.app/" target="_blank" rel="noopener noreferrer">K-Tech Studio</a>
             </div>
-            <p>TableCSV v1.2.0 · MIT · <a href="https://github.com/crossbeat461-a11y">K-Tech Studio</a></p>
+            <p>TableCSV v1.3.0 · MIT · <a href="https://github.com/crossbeat461-a11y">K-Tech Studio</a></p>
         </div>
     </footer>
 
