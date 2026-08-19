@@ -49,3 +49,4 @@ Settings → Pages → Branch: `main` / `/ (root)`
 - Community plugins: https://obsidian.md/plugins?id=table-csv
 - Plugin repo: https://github.com/crossbeat461-a11y/table-csv
 - K-Tech Studio: https://k-tech-lab.vercel.app/
+- Buy Me a Coffee: https://buymeacoffee.com/k_tech_studio
