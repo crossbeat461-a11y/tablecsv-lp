@@ -1,6 +1,6 @@
 # TableCSV — Landing Page
 
-Official landing page for **TableCSV** (Obsidian Community plugin v1.4.0).
+Official landing page for **TableCSV** (Obsidian Community plugin v1.4.1).
 
 - Open `.csv` files as tables inside your vault
 - View, filter, column sort, edit — copy and paste via the OS clipboard (Excel, Notepad, TextEdit)

@@ -11,8 +11,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TableCSV v1.4.0 | Obsidian で CSV を表として開く・ソート・合計行固定・コピー・貼り付け</title>
-    <meta name="description" content="TableCSV — Obsidian Community plugin v1.4.0. Open .csv as tables with sticky header, filter, column sort, pin last row for totals, and OS clipboard copy/paste (Excel, Notepad, TextEdit). Fully offline. Free & MIT.">
+    <title>TableCSV v1.4.1 | Obsidian で CSV を表として開く・ソート・合計行固定・コピー・貼り付け</title>
+    <meta name="description" content="TableCSV — Obsidian Community plugin v1.4.1. Open .csv as tables with sticky header, filter, column sort, pin last row for totals, and OS clipboard copy/paste (Excel, Notepad, TextEdit). Fully offline. Free & MIT.">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="K-Tech Studio">
     <link rel="canonical" href="https://tablecsv-lp.vercel.app/">
@@ -21,7 +21,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tablecsv-lp.vercel.app/">
     <meta property="og:site_name" content="K-Tech Studio">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="TableCSV v1.4.0 | Obsidian CSV Table Plugin">
+    <meta property="og:title" content="TableCSV v1.4.1 | Obsidian CSV Table Plugin">
     <meta property="og:description" content="Open CSV files as tables. Column sort, filter, copy and paste with Excel, Notepad, or TextEdit. Sticky header, fully offline.">
     <meta property="og:url" content="https://tablecsv-lp.vercel.app/">
     <meta property="og:image" content="https://tablecsv-lp.vercel.app/images/screenshot.png">
@@ -29,7 +29,7 @@
     <meta property="og:locale" content="ja_JP">
     <meta property="og:locale:alternate" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TableCSV v1.4.0 | Obsidian CSV Table Plugin">
+    <meta name="twitter:title" content="TableCSV v1.4.1 | Obsidian CSV Table Plugin">
     <meta name="twitter:description" content="Open CSV files as tables in Obsidian. Column sort, filter, clipboard copy/paste. Free & MIT.">
     <meta name="twitter:image" content="https://tablecsv-lp.vercel.app/images/screenshot.png">
     <meta name="twitter:image:alt" content="TableCSV plugin showing a CSV table in Obsidian">
@@ -61,7 +61,7 @@
           "description": "Obsidian Community plugin to open CSV files as tables with filter, column sort, and clipboard copy/paste.",
           "applicationCategory": "UtilitiesApplication",
           "operatingSystem": "Obsidian",
-          "softwareVersion": "1.4.0",
+          "softwareVersion": "1.4.1",
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
           "author": { "@id": "https://k-tech-lab.vercel.app/#organization" }
         }
@@ -697,7 +697,7 @@
         <div class="container">
             <div class="plugin-badge-row">
                 <span class="badge badge-obsidian">🔌 Obsidian Community plugin</span>
-                <span class="badge badge-version">v1.4.0</span>
+                <span class="badge badge-version">v1.4.1</span>
                 <span class="badge badge-offline">
                     <span class="lang-ja">完全オフライン</span>
                     <span class="lang-en">Fully offline</span>
@@ -798,8 +798,8 @@
                     <span class="icon">📌</span>
                     <h3 class="lang-ja">固定ヘッダー</h3>
                     <h3 class="lang-en">Sticky header</h3>
-                    <p class="lang-ja">スクロールしても列名が見えるので、長い CSV でも迷いません。</p>
-                    <p class="lang-en">Column headers stay visible while scrolling through long files.</p>
+                    <p class="lang-ja">スクロールしても列名が見える。表だけスクロールするので、見出しの上に隙間が出ません。</p>
+                    <p class="lang-en">Column headers stay visible while scrolling. Only the table scrolls—no gap above the header.</p>
                 </article>
                 <article class="feature-card">
                     <span class="icon">🔍</span>
@@ -852,6 +852,13 @@
             <h2 class="section-title lang-ja">更新履歴</h2>
             <h2 class="section-title lang-en">Changelog</h2>
             <div class="steps" style="max-width: 720px; margin: 0 auto;">
+                <div class="step">
+                    <span class="step-num">1.4.1</span>
+                    <div>
+                        <p class="lang-ja">スクロール時に列見出しの上に隙間が出る表示を修正。ツールバーは固定、表のみスクロール。</p>
+                        <p class="lang-en">Fix gap above sticky headers when scrolling. Toolbar stays fixed; only the table scrolls.</p>
+                    </div>
+                </div>
                 <div class="step">
                     <span class="step-num">1.4.0</span>
                     <div>
@@ -959,7 +966,7 @@
                 <a href="https://buymeacoffee.com/k_tech_studio" target="_blank" rel="noopener noreferrer">☕ Buy Me a Coffee</a>
                 <a href="https://k-tech-lab.vercel.app/" target="_blank" rel="noopener noreferrer">K-Tech Studio</a>
             </div>
-            <p class="footer-copy">TableCSV v1.4.0 · MIT · &copy; 2026 K-Tech Studio. Stay curious.</p>
+            <p class="footer-copy">TableCSV v1.4.1 · MIT · &copy; 2026 K-Tech Studio. Stay curious.</p>
             <div class="footer-meta">
                 <button type="button" onclick="togglePolicy()" class="btn-inline-text">About this site</button>
             </div>
