@@ -11,8 +11,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TableCSV v1.4.4 | Obsidian で CSV を表として開く・ソート・合計行固定・コピー・貼り付け</title>
-    <meta name="description" content="TableCSV — Obsidian Community plugin v1.4.4. Open .csv as tables with sticky header, filter, column sort, pin last row for totals, and OS clipboard copy/paste (Excel, Notepad, TextEdit). Fully offline. Free & MIT.">
+    <title>TableCSV v1.5.0 | Obsidian で CSV を新規作成・表として開く・ソート・コピー・貼り付け</title>
+    <meta name="description" content="TableCSV — Obsidian Community plugin v1.5.0. Create a new CSV from a folder, open .csv as tables with sticky header, filter, column sort, pin last row for totals, and OS clipboard copy/paste. Fully offline. Free & MIT.">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="K-Tech Studio">
     <link rel="canonical" href="https://tablecsv-lp.vercel.app/">
@@ -21,16 +21,16 @@
     <link rel="alternate" hreflang="x-default" href="https://tablecsv-lp.vercel.app/">
     <meta property="og:site_name" content="K-Tech Studio">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="TableCSV v1.4.4 | Obsidian CSV Table Plugin">
-    <meta property="og:description" content="Open CSV files as tables. Column sort, filter, copy and paste with Excel, Notepad, or TextEdit. Sticky header, fully offline.">
+    <meta property="og:title" content="TableCSV v1.5.0 | Obsidian CSV Table Plugin">
+    <meta property="og:description" content="Create a new CSV from a folder. Open CSV as tables. Column sort, filter, copy and paste with Excel, Notepad, or TextEdit. Sticky header, fully offline.">
     <meta property="og:url" content="https://tablecsv-lp.vercel.app/">
     <meta property="og:image" content="https://tablecsv-lp.vercel.app/images/screenshot.png">
     <meta property="og:image:alt" content="TableCSV plugin showing a CSV table in Obsidian">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:locale:alternate" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TableCSV v1.4.4 | Obsidian CSV Table Plugin">
-    <meta name="twitter:description" content="Open CSV files as tables in Obsidian. Column sort, filter, clipboard copy/paste. Free & MIT.">
+    <meta name="twitter:title" content="TableCSV v1.5.0 | Obsidian CSV Table Plugin">
+    <meta name="twitter:description" content="Create a new CSV from a folder. Open CSV as tables in Obsidian. Column sort, filter, clipboard copy/paste. Free & MIT.">
     <meta name="twitter:image" content="https://tablecsv-lp.vercel.app/images/screenshot.png">
     <meta name="twitter:image:alt" content="TableCSV plugin showing a CSV table in Obsidian">
     <script type="application/ld+json">
@@ -58,10 +58,10 @@
           "name": "TableCSV",
           "url": "https://tablecsv-lp.vercel.app/",
           "image": "https://tablecsv-lp.vercel.app/images/screenshot.png",
-          "description": "Obsidian Community plugin to open CSV files as tables with filter, column sort, and clipboard copy/paste.",
+          "description": "Obsidian Community plugin to create and open CSV files as tables with filter, column sort, and clipboard copy/paste.",
           "applicationCategory": "UtilitiesApplication",
           "operatingSystem": "Obsidian",
-          "softwareVersion": "1.4.4",
+          "softwareVersion": "1.5.0",
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
           "author": { "@id": "https://k-tech-lab.vercel.app/#organization" }
         }
@@ -697,7 +697,7 @@
         <div class="container">
             <div class="plugin-badge-row">
                 <span class="badge badge-obsidian">🔌 Obsidian Community plugin</span>
-                <span class="badge badge-version">v1.4.4</span>
+                <span class="badge badge-version">v1.5.0</span>
                 <span class="badge badge-offline">
                     <span class="lang-ja">完全オフライン</span>
                     <span class="lang-en">Fully offline</span>
@@ -709,8 +709,8 @@
                 <span class="lang-en">Open <span class="purple">.csv</span> files<br>as readable tables in your vault</span>
             </h1>
 
-            <p class="lead lang-ja">TableCSV は Obsidian 用プラグイン。CSV を表で開き、フィルター・列ソート（合計行は最下行固定で対応）・編集、OS クリップボードでのコピー／貼り付けができます。ネットワーク不要・無料（MIT）。</p>
-            <p class="lead lang-en">TableCSV is an Obsidian plugin. Open CSV as tables with filter, column sort (pin the last row for totals), editing, and OS clipboard copy/paste (Excel, Notepad, TextEdit). No network requests. Free &amp; MIT.</p>
+            <p class="lead lang-ja">TableCSV は Obsidian 用プラグイン。フォルダから CSV を新規作成し、表で開いてフィルター・列ソート（合計行は最下行固定）・編集、OS クリップボードでのコピー／貼り付けができます。ネットワーク不要・無料（MIT）。</p>
+            <p class="lead lang-en">TableCSV is an Obsidian plugin. Create a new CSV from a folder, then open it as a table with filter, column sort (pin the last row for totals), editing, and OS clipboard copy/paste. No network requests. Free &amp; MIT.</p>
 
             <div class="hero-cta">
                 <a href="https://obsidian.md/plugins?id=table-csv" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
@@ -788,6 +788,13 @@
 
             <div class="feature-grid">
                 <article class="feature-card">
+                    <span class="icon">📄</span>
+                    <h3 class="lang-ja">CSV を新規作成</h3>
+                    <h3 class="lang-en">Create a new CSV</h3>
+                    <p class="lang-ja">フォルダを右クリック、またはコマンドパレットから空の CSV を作成。編集モードで開き、セル・行・列を増やせます。</p>
+                    <p class="lang-en">Right-click a folder or use the command palette to create a blank CSV. It opens in Edit so you can add cells, rows, and columns.</p>
+                </article>
+                <article class="feature-card">
                     <span class="icon">📊</span>
                     <h3 class="lang-ja">表形式ビュー</h3>
                     <h3 class="lang-en">Clean table view</h3>
@@ -853,6 +860,13 @@
             <h2 class="section-title lang-en">Changelog</h2>
             <div class="steps" style="max-width: 720px; margin: 0 auto;">
                 <div class="step">
+                    <span class="step-num">1.5.0</span>
+                    <div>
+                        <p class="lang-ja">フォルダの右クリック、またはコマンドパレットから CSV を新規作成。新規ファイルは編集モードで開きます。</p>
+                        <p class="lang-en">Create a new CSV from a folder or the command palette. New files open in Edit.</p>
+                    </div>
+                </div>
+                <div class="step">
                     <span class="step-num">1.4.4</span>
                     <div>
                         <p class="lang-ja">区切り文字・引用スタイルを保持。内容が同じならファイルを書き直さない。UI は日本語・英語・ドイツ語。</p>
@@ -917,10 +931,10 @@
                 <div class="step">
                     <span class="step-num">3</span>
                     <div>
-                        <h3 class="lang-ja">CSV を開く</h3>
-                        <h3 class="lang-en">Open a CSV file</h3>
-                        <p class="lang-ja">ファイルエクスプローラーから <code>.csv</code> をクリック。表ビューが開きます。</p>
-                        <p class="lang-en">Click any <code>.csv</code> in the file explorer to open the table view.</p>
+                        <h3 class="lang-ja">CSV を新規作成、または開く</h3>
+                        <h3 class="lang-en">Create or open a CSV</h3>
+                        <p class="lang-ja">フォルダを右クリックして <strong>CSVを新規作成</strong>。既存の <code>.csv</code> をクリックしても表ビューが開きます。</p>
+                        <p class="lang-en">Right-click a folder and choose <strong>New CSV</strong>. You can also click an existing <code>.csv</code> to open the table view.</p>
                     </div>
                 </div>
                 <div class="step">
@@ -966,7 +980,7 @@
                 <a href="https://buymeacoffee.com/k_tech_studio" target="_blank" rel="noopener noreferrer">☕ Buy Me a Coffee</a>
                 <a href="https://k-tech-lab.vercel.app/" target="_blank" rel="noopener noreferrer">K-Tech Studio</a>
             </div>
-            <p class="footer-copy">TableCSV v1.4.4 · MIT · &copy; 2026 K-Tech Studio. Stay curious.</p>
+            <p class="footer-copy">TableCSV v1.5.0 · MIT · &copy; 2026 K-Tech Studio. Stay curious.</p>
             <div class="footer-meta">
                 <button type="button" onclick="togglePolicy()" class="btn-inline-text">About this site</button>
             </div>
