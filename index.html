@@ -11,8 +11,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TableCSV v1.8.0 | Obsidian で CSV を新規作成・表として開く・ソート・コピー・貼り付け</title>
-    <meta name="description" content="TableCSV — Obsidian Community plugin v1.8.0. Create a new CSV from a folder, open .csv as tables with sticky header, filter, column sort, pin last row or first column, export filtered rows, and OS clipboard copy/paste. Fully offline. Free & MIT.">
+    <title>TableCSV v1.9.0 | Obsidian で CSV を新規作成・表として開く・ソート・コピー・貼り付け</title>
+    <meta name="description" content="TableCSV — Obsidian Community plugin v1.9.0. Create a new CSV from a folder, open .csv as tables with sticky header, filter, column sort, pin last row or first column, export filtered rows, edit with Tab or Enter, and OS clipboard copy/paste. Fully offline. Free & MIT.">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="author" content="K-Tech Studio">
     <link rel="canonical" href="https://tablecsv-lp.vercel.app/">
@@ -21,7 +21,7 @@
     <link rel="alternate" hreflang="x-default" href="https://tablecsv-lp.vercel.app/">
     <meta property="og:site_name" content="K-Tech Studio">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="TableCSV v1.8.0 | Obsidian CSV Table Plugin">
+    <meta property="og:title" content="TableCSV v1.9.0 | Obsidian CSV Table Plugin">
     <meta property="og:description" content="Create a new CSV from a folder. Open CSV as tables. Column sort, filter, pin first column, export filtered rows, copy and paste with Excel. Sticky header, fully offline.">
     <meta property="og:url" content="https://tablecsv-lp.vercel.app/">
     <meta property="og:image" content="https://tablecsv-lp.vercel.app/images/screenshot.png">
@@ -29,7 +29,7 @@
     <meta property="og:locale" content="ja_JP">
     <meta property="og:locale:alternate" content="en_US">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="TableCSV v1.8.0 | Obsidian CSV Table Plugin">
+    <meta name="twitter:title" content="TableCSV v1.9.0 | Obsidian CSV Table Plugin">
     <meta name="twitter:description" content="Create a new CSV from a folder. Open CSV as tables in Obsidian. Column sort, filter, pin first column, export filtered rows. Free & MIT.">
     <meta name="twitter:image" content="https://tablecsv-lp.vercel.app/images/screenshot.png">
     <meta name="twitter:image:alt" content="TableCSV plugin showing a CSV table in Obsidian">
@@ -61,7 +61,7 @@
           "description": "Obsidian Community plugin to create and open CSV files as tables with filter, column sort, pin first column, export filtered rows, and clipboard copy/paste.",
           "applicationCategory": "UtilitiesApplication",
           "operatingSystem": "Obsidian",
-          "softwareVersion": "1.8.0",
+          "softwareVersion": "1.9.0",
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" },
           "author": { "@id": "https://k-tech-lab.vercel.app/#organization" }
         }
@@ -697,7 +697,7 @@
         <div class="container">
             <div class="plugin-badge-row">
                 <span class="badge badge-obsidian">🔌 Obsidian Community plugin</span>
-                <span class="badge badge-version">v1.8.0</span>
+                <span class="badge badge-version">v1.9.0</span>
                 <span class="badge badge-offline">
                     <span class="lang-ja">完全オフライン</span>
                     <span class="lang-en">Fully offline</span>
@@ -840,8 +840,8 @@
                     <span class="icon">✏️</span>
                     <h3 class="lang-ja">編集モード</h3>
                     <h3 class="lang-en">Edit mode</h3>
-                    <p class="lang-ja">セル・行・列を直して、同じ CSV に保存します。区切り文字・引用符・改行は元のファイルの形を保ちます。</p>
-                    <p class="lang-en">Change cells, rows, and columns, then save to the same CSV. Delimiter, quoting, and line endings stay as in the original file.</p>
+                    <p class="lang-ja">セル・行・列を直して、同じ CSV に保存します。<code>Tab</code> / <code>Enter</code> で隣のセルへ進みます。変換中は動きません。</p>
+                    <p class="lang-en">Change cells, rows, and columns, then save to the same CSV. Tab / Enter move to the next cell. IME composition is left alone.</p>
                 </article>
                 <article class="feature-card">
                     <span class="icon">📋</span>
@@ -873,6 +873,13 @@
             <h2 class="section-title lang-ja">更新履歴</h2>
             <h2 class="section-title lang-en">Changelog</h2>
             <div class="steps" style="max-width: 720px; margin: 0 auto;">
+                <div class="step">
+                    <span class="step-num">1.9.0</span>
+                    <div>
+                        <p class="lang-ja">編集: <strong>Tab / Enter でセル移動</strong>。変換中（日本語など）は動かず、変換を確定しただけでは次のセルへ進みません。</p>
+                        <p class="lang-en">Edit: <strong>Tab / Enter move between cells</strong>. IME composition is left alone — confirming a conversion does not move to another cell.</p>
+                    </div>
+                </div>
                 <div class="step">
                     <span class="step-num">1.8.0</span>
                     <div>
@@ -1015,7 +1022,7 @@
                 <a href="https://buymeacoffee.com/k_tech_studio" target="_blank" rel="noopener noreferrer">☕ Buy Me a Coffee</a>
                 <a href="https://k-tech-lab.vercel.app/" target="_blank" rel="noopener noreferrer">K-Tech Studio</a>
             </div>
-            <p class="footer-copy">TableCSV v1.8.0 · MIT · &copy; 2026 K-Tech Studio. Stay curious.</p>
+            <p class="footer-copy">TableCSV v1.9.0 · MIT · &copy; 2026 K-Tech Studio. Stay curious.</p>
             <div class="footer-meta">
                 <button type="button" onclick="togglePolicy()" class="btn-inline-text">About this site</button>
             </div>
