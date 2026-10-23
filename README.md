@@ -1,6 +1,6 @@
 # TableCSV — Landing Page
 
-Official landing page for **TableCSV** (Obsidian Community plugin v2.1.0).
+Official landing page for **TableCSV** (Obsidian Community plugin v2.1.1).
 
 - Create a new CSV from a folder, or open existing `.csv` files as tables
 - Filter a column by type (text, number, date, checkbox) without changing the file
