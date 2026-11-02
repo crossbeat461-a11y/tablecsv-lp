@@ -1,11 +1,12 @@
 # TableCSV — Landing Page
 
-Official landing page for **TableCSV** (Obsidian Community plugin v2.1.1).
+Official landing page for **TableCSV** (Obsidian Community plugin v2.4.0).
 
-- Create a new CSV from a folder, or open existing `.csv` files as tables
+- Create a new CSV or TSV from a folder, or open existing `.csv` / `.tsv` files as tables
 - Filter a column by type (text, number, date, checkbox) without changing the file
 - Select cells in View (desktop) to see sum, average, and count in a status bar
-- View, filter (also in Edit), column sort, column types (text, number, date, checkbox), pin last row or first column, resize columns, export filtered rows, undo or redo, copy, cut, or clear a selected range, edit with Tab / Enter / arrows — copy and paste via the OS clipboard (Excel, Notepad, TextEdit)
+- View, filter (also in Edit), paste entire table, column sort, column types (text, number, date, checkbox), pin last row or first column, resize columns, export filtered rows, undo or redo, copy, cut, or clear a selected range, edit with Tab / Enter / arrows — copy and paste via the OS clipboard (Excel, Notepad, TextEdit)
+- There is no CSV ↔ TSV conversion
 - Large tables draw on-screen rows first
 - Fully offline
 
